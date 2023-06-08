@@ -1,0 +1,75 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styles */
+  body {
+    background-color: #f5f5f5; /* Sfondo sulla sfumatura sabbia */
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #ebe6da; /* Colore di sfondo dell'header */
+    padding: 20px;
+  }
+  
+  header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  header nav ul li a {
+    color: #333333; /* Colore del testo del menù */
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  header nav ul li a:hover {
+    background-color: #dcd2c1; /* Colore di sfondo dell'elemento del menù al passaggio del mouse */
+  }
+  
+  /* Product styles */
+  .product {
+    width: 200px;
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    background-color: #f9f4e9; /* Colore di sfondo del prodotto */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .product img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .product h3 {
+    margin-top: 10px;
+    color: #333333; /* Colore del titolo del prodotto */
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #ebe6da; /* Colore di sfondo del footer */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer img {
+    height: 50px; /* Altezza del logo nel footer */
+    width: auto;
+  }
+  
