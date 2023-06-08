@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Il mio sito di vendita</title>
+  <title>Il tuo sito di vendita</title>
   <style>
-    
-    <link rel="stylesheet" type="text/css" href="Test.css">
-
     body {
-      background-color: #ffffff; /* Sfondo bianco */
+      background-color: #F4EDEB; /* Colore sabbia per lo sfondo */
       margin: 0;
       padding: 0;
     }
     
     header {
-      background-color: #f2f2f2; /* Colore di sfondo del footer */
+      background-color: #FFFFFF; /* Colore bianco per l'header */
       padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
-    footer {
-      background-color: #f2f2f2; /* Colore di sfondo del footer */
-      padding: 20px;
-      text-align: center;
-    }
-    
-    footer img {
-      height: 50px; /* Altezza del logo nel footer */
-      width: auto;
+    header img {
+      width: 100px; /* Larghezza desiderata per il logo */
     }
     
     nav ul {
@@ -40,16 +32,25 @@
       margin-right: 10px;
     }
     
+    main {
+      margin: 20px;
+    }
+    
     .product {
-      width: 200px;
-      display: inline-block;
-      margin: 10px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .product img {
+      width: 200px; /* Larghezza desiderata per l'immagine del prodotto */
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
   <header>
+    <img src="logo.png" alt="Logo">
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
@@ -58,56 +59,17 @@
       </ul>
     </nav>
   </header>
-  
-  <div class="product">
-    <a href="pagina_prodotto1.html">
-      <img src="percorso_del_prodotto1.jpg" alt="Prodotto 1">
-      <h3>Prodotto 1</h3>
-      <div id="timer-1"></div>
-    </a>
-  </div>
-  
-  <div class="product">
-    <a href="pagina_prodotto2.html">
-      <img src="percorso_del_prodotto2.jpg" alt="Prodotto 2">
-      <h3>Prodotto 2</h3>
-      <div id="timer-2"></div>
-    </a>
-  </div>
-  
-  <div class="product">
-    <a href="pagina_prodotto3.html">
-      <img src="percorso_del_prodotto3.jpg" alt="Prodotto 3">
-      <h3>Prodotto 3</h3>
-      <div id="timer-3"></div>
-    </a>
-  </div>
-  
-  <div class="product">
-    <a href="pagina_prodotto4.html">
-      <img src="percorso_del_prodotto4.jpg" alt="Prodotto 4">
-      <h3>Prodotto 4</h3>
-      <div id="timer-4"></div>
-    </a>
-  </div>
-  
-  <div class="product">
-    <a href="pagina_prodotto5.html">
-      <img src="percorso_del_prodotto5.jpg" alt="Prodotto 5">
-      <h3>Prodotto 5</h3>
-      <div id="timer-5"></div>
-    </a>
-  </div>
-  
-  <footer>
-    <img src="percorso_del_tuo_logo.png" alt="Logo">
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Prodotti</a></li>
-        <li><a href="#">Contatti</a></li>
-      </ul>
-    </nav>
-  </footer>
+
+  <main>
+    <div class="product">
+      <img src="prodotto1.jpg" alt="Prodotto 1">
+      <h3><a href="prodotto1.html">Prodotto 1</a></h3>
+    </div>
+
+    <div class="product">
+      <img src="prodotto2.jpg" alt="Prodotto 2">
+      <h3><a href="prodotto2.html">Prodotto 2</a></h3>
+    </div>
+  </main>
 </body>
 </html>
