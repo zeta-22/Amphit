@@ -13,7 +13,7 @@
       background-color: #FFFFFF; /* Colore bianco per l'header */
       padding: 20px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* Centra gli elementi orizzontalmente */
       align-items: center;
     }
     
@@ -25,10 +25,11 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: flex-start; /* Allinea gli elementi a sinistra */
     }
     
     nav ul li {
-      display: inline-block;
       margin-right: 10px;
     }
     
@@ -50,14 +51,14 @@
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo">
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">Prodotti</a></li>
         <li><a href="#">Contatti</a></li>
+        <li><a href="#">Prodotti</a></li>
       </ul>
     </nav>
+    <img src="logo.png" alt="Logo">
   </header>
 
   <main>
