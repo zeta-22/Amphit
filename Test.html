@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Il tuo sito di vendita</title>
+  <title>Vendita prodotto con Raffle</title>
   <style>
     body {
       background-color: #F4EDEB; /* Colore sabbia per lo sfondo */
@@ -9,47 +9,18 @@
       padding: 0;
     }
     
-    header {
-      background-color: #FFFFFF; /* Colore bianco per l'header */
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
       padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background-color: #FFFFFF; /* Colore bianco per il contenitore */
     }
     
-    header .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    header img {
-      width: 100px; /* Larghezza desiderata per il logo */
-    }
-    
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    
-    nav ul li {
-      display: inline-block;
-      margin-right: 10px;
-    }
-    
-    main {
-      margin: 20px;
-    }
-    
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+    h1 {
+      text-align: center;
     }
     
     .product {
-      flex-basis: calc(50% - 10px);
       display: flex;
       align-items: center;
       margin-bottom: 20px;
@@ -60,43 +31,51 @@
       margin-right: 10px;
     }
     
-    footer {
-      background-color: #FFFFFF; /* Colore bianco per il footer */
-      padding: 20px;
+    .raffle {
       text-align: center;
+      margin-top: 20px;
+    }
+    
+    .raffle input[type="text"],
+    .raffle button {
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="Logo">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Prodotti</a></li>
-        <li><a href="#">Contatti</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <div class="products">
-      <div class="product">
-        <img src="prodotto1.jpg" alt="Prodotto 1">
-        <h3><a href="prodotto1.html">Prodotto 1</a></h3>
-      </div>
-
-      <div class="product">
-        <img src="prodotto2.jpg" alt="Prodotto 2">
-        <h3><a href="prodotto2.html">Prodotto 2</a></h3>
+  <div class="container">
+    <h1>Vendita prodotto con Raffle</h1>
+    
+    <div class="product">
+      <img src="prodotto.jpg" alt="Prodotto">
+      <div>
+        <h2>Nome Prodotto</h2>
+        <p>Descrizione del prodotto</p>
+        <p>Prezzo: $XX.XX</p>
       </div>
     </div>
-  </main>
+    
+    <div class="raffle">
+      <h3>Raffle</h3>
+      <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
+      <input type="text" placeholder="Inserisci il tuo nome">
+      <button onclick="participateRaffle()">Partecipa</button>
+    </div>
+  </div>
 
-  <footer>
-    <p>© 2023 Il tuo sito di vendita. Tutti i diritti riservati.</p>
-  </footer>
+  <script>
+    function participateRaffle() {
+      var nameInput = document.querySelector('input[type="text"]');
+      var name = nameInput.value;
+      
+      if (name !== '') {
+        // Effettua qui le operazioni per partecipare alla raffle
+        alert('Grazie per aver partecipato alla raffle, ' + name + '!');
+        nameInput.value = '';
+      } else {
+        alert('Inserisci il tuo nome per partecipare alla raffle.');
+      }
+    }
+  </script>
 </body>
 </html>
