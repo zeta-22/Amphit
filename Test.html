@@ -51,7 +51,7 @@
       <div>
         <h2>Nome Prodotto</h2>
         <p>Descrizione del prodotto</p>
-        <p>N° Ticket disponibili: 100</p>
+        <p>N° Ticket disponibili: 140</p>
       </div>
     </div>
     
@@ -65,7 +65,17 @@
   </div>
 
   <script>
-    var totalTickets = 140; // Numero totale di biglietti disponibili
+   var totalTickets = 140; // Numero totale di biglietti disponibili
+var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
+
+function updateTicketInput() {
+  var ticketInput = document.querySelector('#ticketInput');
+  var tickets = parseInt(ticketInput.value);
+  
+  if (isNaN(tickets) || tickets < 1 || tickets > maxTickets) {
+    ticketInput.value = '';
+  }
+}
 
 function participateRaffle() {
   var nameInput = document.querySelector('input[type="text"]');
@@ -73,14 +83,14 @@ function participateRaffle() {
   var name = nameInput.value;
   var tickets = parseInt(ticketInput.value);
   
-  if (name !== '' && tickets > 0) {
-    if (tickets <= Math.floor(totalTickets * 0.1)) { // Limite massimo del 10% dei biglietti
+  if (name !== '') {
+    if (!isNaN(tickets) && tickets >= 1 && tickets <= maxTickets) {
       // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
       alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
       nameInput.value = '';
       ticketInput.value = '';
     } else {
-      alert('Puoi acquistare al massimo il 10% dei biglietti disponibili (' + Math.floor(totalTickets * 0.1) + ' biglietti).');
+      alert('Inserisci un numero di biglietti valido (compreso tra 1 e ' + maxTickets + ').');
     }
   } else {
     alert('Inserisci il tuo nome e il numero di biglietti per partecipare alla raffle.');
