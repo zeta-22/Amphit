@@ -84,10 +84,17 @@
     </div>
   </div>
 
-  <script>
+  <div class="countdown">
+    <h3>Tempo rimanente:</h3>
+    <div id="countdownTimer"></div>
+  </div>
+
+   <script>
     var totalTickets = 140; // Numero totale di biglietti disponibili
     var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
     var ticketCount = 0; // Contatore dei biglietti acquistati
+
+    var countdownDate = new Date("2023-06-09T00:00:00Z").getTime(); // Data di scadenza del countdown
 
     function showAlert(message) {
       var alertElement = document.querySelector('#alert');
@@ -147,10 +154,28 @@
       }
     }
 
+    function updateCountdown() {
+      var now = new Date().getTime();
+      var distance = countdownDate - now;
+
+      // Calcola il tempo rimanente in giorni, ore, minuti e secondi
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      var countdownTimerElement = document.querySelector('#countdownTimer');
+      countdownTimerElement.textContent = days + ' giorni, ' + hours + ' ore, ' + minutes + ' minuti, ' + seconds + ' secondi';
+
+      if (distance <= 0) {
+        disableTicketPurchase();
+      }
+    }
+
     window.onload = function() {
       var ticketInput = document.querySelector('#ticketInput');
       var alertElement = document.querySelector('#alert');
-      
+
       ticketInput.addEventListener('input', function() {
         var tickets = parseInt(ticketInput.value);
 
@@ -165,9 +190,8 @@
 
       updateTicketCount(); // Inizializza il numero dei biglietti rimanenti
 
-      if (ticketCount === totalTickets) {
-        disableTicketPurchase();
-      }
+      // Aggiorna il countdown ogni secondo
+      setInterval(updateCountdown, 1000);
     }
   </script>
 </body>
