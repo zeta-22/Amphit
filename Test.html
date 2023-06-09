@@ -122,6 +122,8 @@
       showAlert(successMessage);
       emailInput.value = '';
       ticketInput.value = '';
+
+      updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti e la barra di avanzamento
     } else {
       if (!emailRegex.test(email)) {
         var invalidEmailMessage = 'Inserisci un indirizzo email valido.';
@@ -138,8 +140,6 @@
     var missingInfoMessage = 'Inserisci il tuo indirizzo email e il numero di biglietti per partecipare alla raffle.';
     showAlert(missingInfoMessage);
   }
-
-  updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti
 }
 
 window.onload = function() {
