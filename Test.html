@@ -44,10 +44,13 @@
 
     .ticket-bar {
       margin-top: 20px;
+      height: 10px;
+      background-color: #4CAF50; /* Colore verde per la barra di avanzamento */
+      width: 100%;
     }
 
-    .ticket-bar .ticket-progress {
-      height: 10px;
+    .ticket-progress {
+      height: 100%;
       background-color: #4CAF50; /* Colore verde per la barra di avanzamento */
       width: 0;
     }
@@ -69,20 +72,19 @@
       <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
       <input type="number" id="ticketInput" placeholder="Numero di biglietti">
       <button onclick="participateRaffle()">Partecipa</button>
-
-      <!-- Visualizzazione dei biglietti -->
-      <div class="ticket-info">
-        <p>Totale biglietti: <span id="totalTickets"></span></p>
-        <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
-      </div>
-
-      <div class="ticket-bar">
-        <div class="ticket-progress"></div>
-      </div>
-
-      <div id="alert" style="display: none;"></div>
     </div>
   </div>
+
+  <div class="ticket-info">
+    <p>Totale biglietti: <span id="totalTickets"></span></p>
+    <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
+  </div>
+
+  <div class="ticket-bar">
+    <div class="ticket-progress"></div>
+  </div>
+
+  <div id="alert" style="display: none;"></div>
 
   <script>
     var totalTickets = 140; // Numero totale di biglietti disponibili
