@@ -69,35 +69,39 @@
 var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
 
 function participateRaffle() {
-  var nameInput = document.querySelector('input[type="text"]');
+  var emailInput = document.querySelector('input[type="email"]');
   var ticketInput = document.querySelector('#ticketInput');
-  var name = nameInput.value;
+  var email = emailInput.value;
   var tickets = parseInt(ticketInput.value);
-  
-  if (name !== '') {
-    if (tickets > 0 && tickets <= maxTickets) {
+
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (email !== '') {
+    if (emailRegex.test(email) && tickets > 0 && tickets <= maxTickets) {
       // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
-      alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
-      nameInput.value = '';
+      alert('Grazie per aver partecipato alla raffle con l\'indirizzo email ' + email + '! Hai acquistato ' + tickets + ' biglietti.');
+      emailInput.value = '';
       ticketInput.value = '';
     } else {
-      if (tickets <= 0) {
+      if (!emailRegex.test(email)) {
+        alert('Inserisci un indirizzo email valido.');
+      } else if (tickets <= 0) {
         alert('Inserisci un numero di biglietti valido (superiore a 0).');
       } else {
         alert('Puoi acquistare al massimo ' + maxTickets + ' biglietti.');
       }
     }
   } else {
-    alert('Inserisci il tuo nome e il numero di biglietti per partecipare alla raffle.');
+    alert('Inserisci il tuo indirizzo email e il numero di biglietti per partecipare alla raffle.');
   }
 }
 
 window.onload = function() {
   var ticketInput = document.querySelector('#ticketInput');
-  
+
   ticketInput.addEventListener('input', function() {
     var tickets = parseInt(ticketInput.value);
-    
+
     if (tickets <= 0 || tickets > maxTickets) {
       ticketInput.value = ''; // Resetta il valore se non è valido
     }
