@@ -63,6 +63,12 @@
       <button onclick="participateRaffle()">Partecipa</button>
     </div>
     
+    <!-- Visualizzazione dei biglietti -->
+    <div class="ticket-info">
+      <p>Totale biglietti: <span id="totalTickets"></span></p>
+      <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
+    </div>
+
     <div id="alert" style="display: none;"></div>
   </div>
 
@@ -78,8 +84,11 @@
     }
 
     function updateTicketCount() {
-      var remainingCountElement = document.querySelector('#remainingCount');
-      remainingCountElement.textContent = totalTickets - ticketCount; // Calcola i biglietti rimanenti
+      var totalTicketsElement = document.querySelector('#totalTickets');
+      var remainingTicketsElement = document.querySelector('#remainingTickets');
+
+      totalTicketsElement.textContent = totalTickets; // Mostra il numero totale di biglietti
+      remainingTicketsElement.textContent = totalTickets - ticketCount; // Mostra il numero di biglietti rimanenti
     }
 
     function participateRaffle() {
