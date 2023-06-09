@@ -44,13 +44,15 @@ h1 {
   text-decoration: none;
   font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px; /* Arrotondamento del pulsante */
   transition: background-color 0.3s ease;
+  font-family: "Arial", sans-serif; /* Font moderno */
 }
 
 .button-partecipa:hover {
   background-color: #D1BE9B; /* Tonalità più scura del colore sabbia */
 }
+
 
 /* Stili CSS per gli input */
 .input {
