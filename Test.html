@@ -81,7 +81,7 @@ function updateTicketCount() {
 }
 
 function participateRaffle() {
-  var emailInput = document.querySelector('input[type="email"]');
+  var emailInput = document.querySelector('input[type="text"]');
   var ticketInput = document.querySelector('#ticketInput');
   var email = emailInput.value;
   var tickets = parseInt(ticketInput.value);
@@ -100,6 +100,9 @@ function participateRaffle() {
       showAlert(successMessage);
       emailInput.value = '';
       ticketInput.value = '';
+
+      updateTicketCount(); // Richiama la funzione per aggiornare il numero dei biglietti rimanenti
+    }
     } else {
       if (!emailRegex.test(email)) {
         var invalidEmailMessage = 'Inserisci un indirizzo email valido.';
@@ -122,7 +125,10 @@ function participateRaffle() {
 
 window.onload = function() {
   var ticketInput = document.querySelector('#ticketInput');
-  var alertElement = document.querySelector('#alert');
+  var alertElement = document.createElement('div');
+alertElement.id = 'alert';
+document.body.appendChild(alertElement);
+
   
   ticketInput.addEventListener('input', function() {
     var tickets = parseInt(ticketInput.value);
