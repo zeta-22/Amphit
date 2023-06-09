@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vendita prodotto con Raffle</title>
+  <title>Test Amphit</title>
   <style>
     body {
       background-color: #F4EDEB; /* Colore sabbia per lo sfondo */
@@ -44,14 +44,14 @@
 </head>
 <body>
   <div class="container">
-    <h1>Vendita prodotto con Raffle</h1>
+    <h1>Test Amphit</h1>
     
     <div class="product">
       <img src="prodotto.jpg" alt="Prodotto">
       <div>
         <h2>Nome Prodotto</h2>
         <p>Descrizione del prodotto</p>
-        <p>Prezzo: $XX.XX</p>
+        <p>N° Ticket disponibili: 100</p>
       </div>
     </div>
     
@@ -59,23 +59,29 @@
       <h3>Raffle</h3>
       <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
       <input type="text" placeholder="Inserisci il tuo nome">
-      <input type="number" placeholder="Numero di biglietti">
+      <input type="number" id="ticketInput" placeholder="Numero di biglietti">
       <button onclick="participateRaffle()">Partecipa</button>
     </div>
   </div>
 
   <script>
+    var totalTickets = 140; // Numero totale di biglietti disponibili
+
     function participateRaffle() {
       var nameInput = document.querySelector('input[type="text"]');
-      var ticketInput = document.querySelector('input[type="number"]');
+      var ticketInput = document.querySelector('#ticketInput');
       var name = nameInput.value;
-      var tickets = ticketInput.value;
+      var tickets = parseInt(ticketInput.value);
       
       if (name !== '' && tickets > 0) {
-        // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
-        alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
-        nameInput.value = '';
-        ticketInput.value = '';
+        if (tickets <= totalTickets * 0.1) { // Limite massimo del 10% dei biglietti
+          // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
+          alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
+          nameInput.value = '';
+          ticketInput.value = '';
+        } else {
+          alert('Puoi acquistare al massimo il 10% dei biglietti disponibili.');
+        }
       } else {
         alert('Inserisci il tuo nome e il numero di biglietti per partecipare alla raffle.');
       }
