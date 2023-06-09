@@ -51,58 +51,56 @@
       <div>
         <h2>Nome Prodotto</h2>
         <p>Descrizione del prodotto</p>
-        <p>N° Ticket disponibili: 140</p>
-        <div id="ticketsRemaining">Biglietti rimasti: <span id="remainingCount"></span></div>
+        <p>N° Ticket disponibili: <span id="remainingCount">140</span></p>
       </div>
     </div>
     
     <div class="raffle">
       <h3>Raffle</h3>
       <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
-      <input type="text" placeholder="Inserisci la tua email">
+      <input type="email" placeholder="Inserisci la tua email">
       <input type="number" id="ticketInput" placeholder="Numero di biglietti">
       <button onclick="participateRaffle()">Partecipa</button>
     </div>
+    
+    <div id="alert" style="display: none;"></div>
   </div>
 
   <script>
- var totalTickets = 140; // Numero totale di biglietti disponibili
-var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
+    var totalTickets = 140; // Numero totale di biglietti disponibili
+    var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
+    var ticketCount = 0; // Contatore dei biglietti acquistati
 
-function showAlert(message) {
-  var alertElement = document.querySelector('#alert');
-  alertElement.textContent = message;
-  alertElement.style.display = 'block';
-}
+    function showAlert(message) {
+      var alertElement = document.querySelector('#alert');
+      alertElement.textContent = message;
+      alertElement.style.display = 'block';
+    }
 
-function updateTicketCount() {
-  var remainingCountElement = document.querySelector('#remainingCount');
-  remainingCountElement.textContent = totalTickets - ticketCount; // Calcola i biglietti rimanenti
-}
+    function updateTicketCount() {
+      var remainingCountElement = document.querySelector('#remainingCount');
+      remainingCountElement.textContent = totalTickets - ticketCount; // Calcola i biglietti rimanenti
+    }
 
-function participateRaffle() {
-  var emailInput = document.querySelector('input[type="text"]');
-  var ticketInput = document.querySelector('#ticketInput');
-  var email = emailInput.value;
-  var tickets = parseInt(ticketInput.value);
+    function participateRaffle() {
+      var emailInput = document.querySelector('input[type="email"]');
+      var ticketInput = document.querySelector('#ticketInput');
+      var email = emailInput.value;
+      var tickets = parseInt(ticketInput.value);
 
-  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (email !== '') {
-    if (emailRegex.test(email) && tickets > 0 && tickets <= maxTickets) {
-      // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
+      if (email !== '') {
+        if (emailRegex.test(email) && tickets > 0 && tickets <= maxTickets) {
+          // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
       for (var i = 0; i < tickets; i++) {
         ticketCount++; // Incrementa il contatore dei biglietti
         // Codice per assegnare e numerare il biglietto (ad esempio, salvare in un database o creare un elemento HTML)
       }
-
       var successMessage = 'Grazie per aver partecipato alla raffle con l\'indirizzo email ' + email + '! Hai acquistato ' + tickets + ' biglietti.';
       showAlert(successMessage);
       emailInput.value = '';
       ticketInput.value = '';
-
-      updateTicketCount(); // Richiama la funzione per aggiornare il numero dei biglietti rimanenti
-    }
     } else {
       if (!emailRegex.test(email)) {
         var invalidEmailMessage = 'Inserisci un indirizzo email valido.';
@@ -120,15 +118,12 @@ function participateRaffle() {
     showAlert(missingInfoMessage);
   }
 
-    updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti
+  updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti
 }
 
 window.onload = function() {
   var ticketInput = document.querySelector('#ticketInput');
-  var alertElement = document.createElement('div');
-alertElement.id = 'alert';
-document.body.appendChild(alertElement);
-
+  var alertElement = document.querySelector('#alert');
   
   ticketInput.addEventListener('input', function() {
     var tickets = parseInt(ticketInput.value);
@@ -141,9 +136,9 @@ document.body.appendChild(alertElement);
   alertElement.addEventListener('click', function() {
     alertElement.style.display = 'none';
   });
+
   updateTicketCount(); // Inizializza il numero dei biglietti rimanenti
 }
-
 
   </script>
 </body>
