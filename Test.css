@@ -1,137 +1,75 @@
-<style>
-    /* Stili CSS per il layout del sito */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #F4EDEB; /* Colore sabbia per lo sfondo */
-      margin: 0;
-      padding: 0;
-    }
-    
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #FFFFFF; /* Colore bianco per il contenitore */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    h1 {
-      text-align: center;
-      color: #333333; /* Colore testo per l'intestazione */
-      font-size: 32px;
-      margin-top: 0;
-    }
-    
-    .product {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    
-    .product img {
-      width: 200px; /* Larghezza desiderata per l'immagine del prodotto */
-      margin-right: 10px;
-    }
-    
-    .raffle {
-      text-align: center;
-      margin-top: 20px;
-    }
-    
-    /* Stili CSS per i pulsanti */
-    .button-partecipa {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #E0CDAE; /* Colore sabbia */
-      color: #333333; /* Colore testo */
-      text-decoration: none;
-      font-size: 16px;
-      border: none;
-      border-radius: 30px; /* Arrotondamento del pulsante */
-      transition: background-color 0.3s ease;
-      font-family: "Arial", sans-serif; /* Font moderno */
-    }
-    
-    .button-partecipa:hover {
-      background-color: #D1BE9B; /* Tonalità più scura del colore sabbia */
-    }
-    
-    .product .ticket-bar,
-    .ticket-info .ticket-bar {
-      height: 10px;
-      background-color: #545454; /* Colore della barra */
-      margin-top: 5px;
-    }
-    
-    .product .ticket-progress,
-    .ticket-info .ticket-progress {
-      height: 100%;
-      background-color: #f68a25; /* Colore della barra di avanzamento */
-    }
-    
-    /* Stili CSS per gli input */
-    .input {
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #CCCCCC;
-      border-radius: 5px;
-    }
-    
-    .input:focus {
-      outline: none;
-      border-color: #555555;
-    }
-    
-    /* Stili CSS per gli alert */
-    .alert {
-      display: none;
-      padding: 10px;
-      margin-top: 10px;
-      background-color: #FFCCCC;
-      color: #FF0000;
-      border: 1px solid #FF0000;
-      border-radius: 5px;
-    }
-    
-    .alert:hover {
-      cursor: pointer;
-    }
-    
-    /* Stili per il countdown */
-    .countdown {
-      text-align: center;
-      margin-top: 20px;
-      font-family: 'Arial', sans-serif;
-      font-size: 24px;
-      color: #333;
-    }
-    
-    .countdown-timer {
-      display: inline-block;
-      padding: 10px;
-      background-color: #f5f5f5;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .countdown-timer span {
-      display: inline-block;
-      margin: 0 5px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-    
-    .countdown-label {
-      font-size: 14px;
-      color: #888;
-    }
-    
-    .countdown-divider {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styles */
+  body {
+    background-color: #f5f5f5; /* Sfondo sulla sfumatura sabbia */
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #ebe6da; /* Colore di sfondo dell'header */
+    padding: 20px;
+  }
+  
+  header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  header nav ul li a {
+    color: #333333; /* Colore del testo del menù */
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  header nav ul li a:hover {
+    background-color: #dcd2c1; /* Colore di sfondo dell'elemento del menù al passaggio del mouse */
+  }
+  
+  /* Product styles */
+  .product {
+    width: 200px;
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    background-color: #f9f4e9; /* Colore di sfondo del prodotto */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .product img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .product h3 {
+    margin-top: 10px;
+    color: #333333; /* Colore del titolo del prodotto */
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #ebe6da; /* Colore di sfondo del footer */
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer img {
+    height: 50px; /* Altezza del logo nel footer */
+    width: auto;
+  }
+  
