@@ -73,8 +73,9 @@
     <div class="ticket-info">
       <p>Totale biglietti: <span id="totalTickets"></span></p>
       <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
+      <div class="ticket-bar">
+        <div class="ticket-progress"></div>
     </div>
-
     <div id="alert" style="display: none;"></div>
   </div>
 
@@ -99,7 +100,7 @@
 
       var percentRemaining = ((totalTickets - ticketCount) / totalTickets) * 100;
       ticketBarElement.style.width = percentRemaining + '%'; // Imposta la larghezza della barra di avanzamento
-    }
+  }
 
     function participateRaffle() {
       var emailInput = document.querySelector('input[type="email"]');
