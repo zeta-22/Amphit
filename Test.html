@@ -4,7 +4,9 @@
   <link rel="stylesheet" type="text/css" href="Test.css">
   <title>Test Amphit</title>
   <style>
+    /* Stili CSS per il layout del sito */
     body {
+      font-family: 'Arial', sans-serif;
       background-color: #F4EDEB; /* Colore sabbia per lo sfondo */
       margin: 0;
       padding: 0;
@@ -16,16 +18,21 @@
       padding: 20px;
       background-color: #FFFFFF; /* Colore bianco per il contenitore */
       display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
     h1 {
       text-align: center;
+      color: #333333; /* Colore testo per l'intestazione */
+      font-size: 32px;
+      margin-top: 0;
     }
     
     .product {
       display: flex;
       align-items: center;
-      margin-right: 20px;
+      margin-bottom: 20px;
     }
     
     .product img {
@@ -34,24 +41,70 @@
     }
     
     .raffle {
-      text-align: left;
-    }
-    
-    .raffle input[type="number"],
-    .raffle button {
-      margin-top: 10px;
-    }
-
-    .ticket-bar {
+      text-align: center;
       margin-top: 20px;
     }
-
-    .ticket-bar .ticket-progress {
-      height: 10px;
-      background-color: #4CAF50; /* Colore verde per la barra di avanzamento */
-      width: 0;
+    
+    /* Stili CSS per i pulsanti */
+    .button-partecipa {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #E0CDAE; /* Colore sabbia */
+      color: #333333; /* Colore testo */
+      text-decoration: none;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px; /* Arrotondamento del pulsante */
+      transition: background-color 0.3s ease;
+      font-family: "Arial", sans-serif; /* Font moderno */
     }
     
+    .button-partecipa:hover {
+      background-color: #D1BE9B; /* Tonalità più scura del colore sabbia */
+    }
+    
+    .product .ticket-bar,
+    .ticket-info .ticket-bar {
+      height: 10px;
+      background-color: #545454; /* Colore della barra */
+      margin-top: 5px;
+    }
+    
+    .product .ticket-progress,
+    .ticket-info .ticket-progress {
+      height: 100%;
+      background-color: #f68a25; /* Colore della barra di avanzamento */
+    }
+    
+    /* Stili CSS per gli input */
+    .input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+    }
+    
+    .input:focus {
+      outline: none;
+      border-color: #555555;
+    }
+    
+    /* Stili CSS per gli alert */
+    .alert {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #FFCCCC;
+      color: #FF0000;
+      border: 1px solid #FF0000;
+      border-radius: 5px;
+    }
+    
+    .alert:hover {
+      cursor: pointer;
+    }
+    
+    /* Stili per il countdown */
     .countdown {
       text-align: center;
       margin-top: 20px;
@@ -59,7 +112,7 @@
       font-size: 24px;
       color: #333;
     }
-
+    
     .countdown-timer {
       display: inline-block;
       padding: 10px;
@@ -67,7 +120,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
+    
     .countdown-timer span {
       display: inline-block;
       margin: 0 5px;
@@ -75,12 +128,12 @@
       font-weight: bold;
       color: #333;
     }
-
+    
     .countdown-label {
       font-size: 14px;
       color: #888;
     }
-
+    
     .countdown-divider {
       font-size: 18px;
       font-weight: bold;
@@ -90,6 +143,8 @@
 </head>
 <body>
   <div class="container">
+    <h1>Test Amphit</h1>
+
     <div class="product">
       <img src="prodotto.jpg" alt="Prodotto">
       <div>
@@ -102,8 +157,8 @@
     <div class="raffle">
       <h3>Raffle</h3>
       <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
-      <input type="number" id="ticketInput" placeholder="Numero di biglietti">
-      <button id="partecipaButton" onclick="participateRaffle()">Partecipa</button>
+      <input type="number" id="ticketInput" placeholder="Numero di biglietti" class="input">
+      <button onclick="participateRaffle()" class="button-partecipa">Partecipa</button>
 
       <!-- Visualizzazione dei biglietti -->
       <div class="ticket-info">
@@ -115,119 +170,115 @@
         <div class="ticket-progress"></div>
       </div>
 
-      <div id="alert" style="display: none;"></div>
+      <div id="alert" class="alert"></div>
+    </div>
+
+    <div class="countdown">
+      <h3>Rimangono</h3>
+      <div id="countdownTimer" class="countdown-timer">
+        <span id="countdownDays" class="countdown-value"></span>
+        <span class="countdown-label">Giorni</span>
+        <span class="countdown-divider">:</span>
+        <span id="countdownHours" class="countdown-value"></span>
+        <span class="countdown-label">Ore</span>
+        <span class="countdown-divider">:</span>
+        <span id="countdownMinutes" class="countdown-value"></span>
+        <span class="countdown-label">Minuti</span>
+        <span class="countdown-divider">:</span>
+        <span id="countdownSeconds" class="countdown-value"></span>
+        <span class="countdown-label">Secondi</span>
+      </div>
     </div>
   </div>
 
-  <div class="countdown">
-    <h3>Tempo rimanente:</h3>
-    <div id="countdownTimer"></div>
-  </div>
-
-   <script>
+  <script>
     var totalTickets = 140; // Numero totale di biglietti disponibili
-    var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
-    var ticketCount = 0; // Contatore dei biglietti acquistati
+    var remainingTickets = 140; // Numero di biglietti rimanenti
+    var countdownEndDate = new Date("2023-06-08T12:00:00"); // Data e ora di scadenza del countdown
 
-    var countdownDate = new Date("2023-06-09T00:00:00Z").getTime(); // Data di scadenza del countdown
+    // Funzione per partecipare alla raffle
+    function participateRaffle() {
+      var ticketInput = document.getElementById("ticketInput");
+      var ticketCount = parseInt(ticketInput.value);
 
-    function showAlert(message) {
-      var alertElement = document.querySelector('#alert');
-      alertElement.textContent = message;
-      alertElement.style.display = 'block';
+      if (isNaN(ticketCount) || ticketCount <= 0) {
+        showAlert("Inserisci un numero valido di biglietti.");
+        return;
+      }
+
+      if (ticketCount > remainingTickets) {
+        showAlert("Numero di biglietti disponibili insufficiente.");
+        return;
+      }
+
+      remainingTickets -= ticketCount;
+      updateTicketInfo();
+      ticketInput.value = "";
     }
 
-    function updateTicketCount() {
-      var totalTicketsElement = document.querySelector('#totalTickets');
-      var remainingTicketsElement = document.querySelector('#remainingTickets');
-      var progressBarElement = document.querySelector('.ticket-progress');
-
-      var remainingTickets = totalTickets - ticketCount;
-      var progressPercentage = (remainingTickets / totalTickets) * 100;
+    // Funzione per aggiornare le informazioni sui biglietti
+    function updateTicketInfo() {
+      var totalTicketsElement = document.getElementById("totalTickets");
+      var remainingTicketsElement = document.getElementById("remainingTickets");
 
       totalTicketsElement.textContent = totalTickets;
       remainingTicketsElement.textContent = remainingTickets;
-      progressBarElement.style.width = progressPercentage + '%';
 
-      if (ticketCount === totalTickets) {
-        disableTicketPurchase();
+      var ticketProgress = document.querySelector(".ticket-progress");
+      var progressPercentage = ((totalTickets - remainingTickets) / totalTickets) * 100;
+      ticketProgress.style.width = progressPercentage + "%";
+
+      if (remainingTickets === 0) {
+        disableParticipation();
       }
     }
 
-    function disableTicketPurchase() {
-      var ticketInput = document.querySelector('#ticketInput');
-      var participateButton = document.querySelector('#partecipaButton');
+    // Funzione per disabilitare la partecipazione alla raffle
+    function disableParticipation() {
+      var ticketInput = document.getElementById("ticketInput");
+      var participateButton = document.querySelector(".button-partecipa");
 
       ticketInput.disabled = true;
       participateButton.disabled = true;
+      participateButton.textContent = "Raffle scaduta";
     }
 
-    function participateRaffle() {
-      var ticketInput = document.querySelector('#ticketInput');
-      var tickets = parseInt(ticketInput.value);
-
-      if (tickets > 0 && tickets <= maxTickets) {
-        if (ticketCount + tickets > totalTickets) {
-          var insufficientTicketsMessage = 'Non ci sono abbastanza biglietti disponibili.';
-          showAlert(insufficientTicketsMessage);
-          return;
-        }
-
-        for (var i = 0; i < tickets; i++) {
-          ticketCount++; // Incrementa il contatore dei biglietti
-          // Codice per assegnare e numerare il biglietto (ad esempio, salvare in un database o creare un elemento HTML)
-        }
-
-        var successMessage = 'Grazie per aver partecipato alla raffle! Hai acquistato ' + tickets + ' biglietti.';
-        showAlert(successMessage);
-        ticketInput.value = '';
-
-        updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti e la barra di avanzamento
-      } else {
-        var invalidTicketsMessage = 'Inserisci un numero di biglietti valido (superiore a 0 e massimo ' + maxTickets + ').';
-        showAlert(invalidTicketsMessage);
-      }
+    // Funzione per mostrare un avviso
+    function showAlert(message) {
+      var alertElement = document.getElementById("alert");
+      alertElement.textContent = message;
+      alertElement.style.display = "block";
+      alertElement.addEventListener("click", function() {
+        alertElement.style.display = "none";
+      });
     }
 
+    // Funzione per aggiornare il countdown
     function updateCountdown() {
       var now = new Date().getTime();
-      var distance = countdownDate - now;
+      var distance = countdownEndDate - now;
 
-      // Calcola il tempo rimanente in giorni, ore, minuti e secondi
+      if (distance <= 0) {
+        disableParticipation();
+        return;
+      }
+
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      var countdownTimerElement = document.querySelector('#countdownTimer');
-      countdownTimerElement.textContent = days + ' giorni, ' + hours + ' ore, ' + minutes + ' minuti, ' + seconds + ' secondi';
-
-      if (distance <= 0) {
-        disableTicketPurchase();
-      }
+      document.getElementById("countdownDays").textContent = days;
+      document.getElementById("countdownHours").textContent = hours;
+      document.getElementById("countdownMinutes").textContent = minutes;
+      document.getElementById("countdownSeconds").textContent = seconds;
     }
 
-    window.onload = function() {
-      var ticketInput = document.querySelector('#ticketInput');
-      var alertElement = document.querySelector('#alert');
+    // Aggiorna il countdown ogni secondo
+    setInterval(updateCountdown, 1000);
 
-      ticketInput.addEventListener('input', function() {
-        var tickets = parseInt(ticketInput.value);
-
-        if (tickets <= 0 || tickets > maxTickets) {
-          ticketInput.value = ''; // Resetta il valore se non è valido
-        }
-      });
-
-      alertElement.addEventListener('click', function() {
-        alertElement.style.display = 'none';
-      });
-
-      updateTicketCount(); // Inizializza il numero dei biglietti rimanenti
-
-      // Aggiorna il countdown ogni secondo
-      setInterval(updateCountdown, 1000);
-    }
+    // Aggiorna le informazioni sui biglietti all'avvio
+    updateTicketInfo();
   </script>
 </body>
 </html>
