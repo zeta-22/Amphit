@@ -56,6 +56,9 @@
         <p>Descrizione del prodotto</p>
         <p>N° Ticket disponibili: <span id="remainingCount">140</span></p>
       </div>
+      <div class="ticket-bar">
+        <div class="ticket-progress"></div>
+      </div>      
     </div>
     
     <div class="raffle">
@@ -89,9 +92,13 @@
     function updateTicketCount() {
       var totalTicketsElement = document.querySelector('#totalTickets');
       var remainingTicketsElement = document.querySelector('#remainingTickets');
+      var ticketBarElement = document.querySelector('.ticket-progress');
 
       totalTicketsElement.textContent = totalTickets; // Mostra il numero totale di biglietti
       remainingTicketsElement.textContent = totalTickets - ticketCount; // Mostra il numero di biglietti rimanenti
+
+      var percentRemaining = ((totalTickets - ticketCount) / totalTickets) * 100;
+      ticketBarElement.style.width = percentRemaining + '%'; // Imposta la larghezza della barra di avanzamento
     }
 
     function participateRaffle() {

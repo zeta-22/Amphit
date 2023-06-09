@@ -53,6 +53,16 @@ h1 {
   background-color: #D1BE9B; /* Tonalità più scura del colore sabbia */
 }
 
+.ticket-bar {
+  height: 10px;
+  background-color: #545454; /* Colore della barra */
+  margin-top: 5px;
+}
+
+.ticket-progress {
+  height: 100%;
+  background-color: #f68a25; /* Colore della barra di avanzamento */
+}
 
 /* Stili CSS per gli input */
 .input {
