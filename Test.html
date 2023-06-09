@@ -67,25 +67,26 @@
   <script>
     var totalTickets = 140; // Numero totale di biglietti disponibili
 
-    function participateRaffle() {
-      var nameInput = document.querySelector('input[type="text"]');
-      var ticketInput = document.querySelector('#ticketInput');
-      var name = nameInput.value;
-      var tickets = parseInt(ticketInput.value);
-      
-      if (name !== '' && tickets > 0) {
-        if (tickets <= totalTickets * 0.1) { // Limite massimo del 10% dei biglietti
-          // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
-          alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
-          nameInput.value = '';
-          ticketInput.value = '';
-        } else {
-          alert('Puoi acquistare al massimo il 10% dei biglietti disponibili.');
-        }
-      } else {
-        alert('Inserisci il tuo nome e il numero di biglietti per partecipare alla raffle.');
-      }
+function participateRaffle() {
+  var nameInput = document.querySelector('input[type="text"]');
+  var ticketInput = document.querySelector('#ticketInput');
+  var name = nameInput.value;
+  var tickets = parseInt(ticketInput.value);
+  
+  if (name !== '' && tickets > 0) {
+    if (tickets <= Math.floor(totalTickets * 0.1)) { // Limite massimo del 10% dei biglietti
+      // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
+      alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
+      nameInput.value = '';
+      ticketInput.value = '';
+    } else {
+      alert('Puoi acquistare al massimo il 10% dei biglietti disponibili (' + Math.floor(totalTickets * 0.1) + ' biglietti).');
     }
+  } else {
+    alert('Inserisci il tuo nome e il numero di biglietti per partecipare alla raffle.');
+  }
+}
+
   </script>
 </body>
 </html>
