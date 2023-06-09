@@ -92,17 +92,18 @@
     }
 
     function updateTicketCount() {
-      var totalTicketsElement = document.querySelector('#totalTickets');
-      var remainingTicketsElement = document.querySelector('#remainingTickets');
-      var progressBarElement = document.querySelector('.ticket-progress');
+  var totalTicketsElement = document.querySelector('#totalTickets');
+  var remainingTicketsElement = document.querySelector('#remainingTickets');
+  var progressBarElement = document.querySelector('.ticket-progress');
 
-     var remainingTickets = totalTickets - ticketCount;
-     var progressPercentage = (remainingTickets / totalTickets) * 100;
-  
-     totalTicketsElement.textContent = totalTickets;
-      remainingTicketsElement.textContent = remainingTickets;
-      progressBarElement.style.width = progressPercentage + '%';
-  }
+  var remainingTickets = totalTickets - ticketCount;
+  var progressPercentage = (remainingTickets / totalTickets) * 100;
+
+  totalTicketsElement.textContent = totalTickets;
+  remainingTicketsElement.textContent = remainingTickets;
+  progressBarElement.style.width = progressPercentage + '%';
+}
+
 
     function participateRaffle() {
       var emailInput = document.querySelector('input[type="email"]');
