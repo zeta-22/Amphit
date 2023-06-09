@@ -65,8 +65,14 @@
   </div>
 
   <script>
-   var totalTickets = 140; // Numero totale di biglietti disponibili
+ var totalTickets = 140; // Numero totale di biglietti disponibili
 var maxTickets = Math.floor(totalTickets * 0.1); // Limite massimo del 10% dei biglietti
+
+function showAlert(message) {
+  var alertElement = document.querySelector('#alert');
+  alertElement.textContent = message;
+  alertElement.style.display = 'block';
+}
 
 function participateRaffle() {
   var emailInput = document.querySelector('input[type="email"]');
@@ -79,26 +85,32 @@ function participateRaffle() {
   if (email !== '') {
     if (emailRegex.test(email) && tickets > 0 && tickets <= maxTickets) {
       // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
-      alert('Grazie per aver partecipato alla raffle con l\'indirizzo email ' + email + '! Hai acquistato ' + tickets + ' biglietti.');
+      var successMessage = 'Grazie per aver partecipato alla raffle con l\'indirizzo email ' + email + '! Hai acquistato ' + tickets + ' biglietti.';
+      showAlert(successMessage);
       emailInput.value = '';
       ticketInput.value = '';
     } else {
       if (!emailRegex.test(email)) {
-        alert('Inserisci un indirizzo email valido.');
+        var invalidEmailMessage = 'Inserisci un indirizzo email valido.';
+        showAlert(invalidEmailMessage);
       } else if (tickets <= 0) {
-        alert('Inserisci un numero di biglietti valido (superiore a 0).');
+        var invalidTicketsMessage = 'Inserisci un numero di biglietti valido (superiore a 0).';
+        showAlert(invalidTicketsMessage);
       } else {
-        alert('Puoi acquistare al massimo ' + maxTickets + ' biglietti.');
+        var maxTicketsMessage = 'Puoi acquistare al massimo ' + maxTickets + ' biglietti.';
+        showAlert(maxTicketsMessage);
       }
     }
   } else {
-    alert('Inserisci il tuo indirizzo email e il numero di biglietti per partecipare alla raffle.');
+    var missingInfoMessage = 'Inserisci il tuo indirizzo email e il numero di biglietti per partecipare alla raffle.';
+    showAlert(missingInfoMessage);
   }
 }
 
 window.onload = function() {
   var ticketInput = document.querySelector('#ticketInput');
-
+  var alertElement = document.querySelector('#alert');
+  
   ticketInput.addEventListener('input', function() {
     var tickets = parseInt(ticketInput.value);
 
@@ -106,8 +118,11 @@ window.onload = function() {
       ticketInput.value = ''; // Resetta il valore se non è valido
     }
   });
-}
 
+  alertElement.addEventListener('click', function() {
+    alertElement.style.display = 'none';
+  });
+}
 
   </script>
 </body>
