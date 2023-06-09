@@ -59,6 +59,7 @@
       <h3>Raffle</h3>
       <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
       <input type="text" placeholder="Inserisci il tuo nome">
+      <input type="number" placeholder="Numero di biglietti">
       <button onclick="participateRaffle()">Partecipa</button>
     </div>
   </div>
@@ -66,14 +67,17 @@
   <script>
     function participateRaffle() {
       var nameInput = document.querySelector('input[type="text"]');
+      var ticketInput = document.querySelector('input[type="number"]');
       var name = nameInput.value;
+      var tickets = ticketInput.value;
       
-      if (name !== '') {
-        // Effettua qui le operazioni per partecipare alla raffle
-        alert('Grazie per aver partecipato alla raffle, ' + name + '!');
+      if (name !== '' && tickets > 0) {
+        // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
+        alert('Grazie per aver partecipato alla raffle, ' + name + '! Hai acquistato ' + tickets + ' biglietti.');
         nameInput.value = '';
+        ticketInput.value = '';
       } else {
-        alert('Inserisci il tuo nome per partecipare alla raffle.');
+        alert('Inserisci il tuo nome e il numero di biglietti per partecipare alla raffle.');
       }
     }
   </script>
