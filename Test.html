@@ -4,81 +4,20 @@
   <link rel="stylesheet" type="text/css" href="Test.css">
   <title>Test Amphit</title>
   <style>
-    body {
-      background-color: #F4EDEB; /* Colore sabbia per lo sfondo */
-      margin: 0;
-      padding: 0;
-    }
-    
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #FFFFFF; /* Colore bianco per il contenitore */
-      display: flex;
-    }
-    
-    h1 {
-      text-align: center;
-    }
-    
-    .product {
-      display: flex;
-      align-items: center;
-      margin-right: 20px;
-    }
-    
-    .product img {
-      width: 200px; /* Larghezza desiderata per l'immagine del prodotto */
-      margin-right: 10px;
-    }
-    
-    .raffle {
-      text-align: left;
-    }
-    
-    .raffle input[type="number"],
-    .raffle button {
-      margin-top: 10px;
-    }
-
-    .ticket-bar {
-      margin-top: 20px;
-    }
-
-    .ticket-bar .ticket-progress {
-      height: 10px;
-      background-color: #4CAF50; /* Colore verde per la barra di avanzamento */
-      width: 0;
-    }
+    /* ... stili CSS ... */
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="product">
-      <img src="prodotto.jpg" alt="Prodotto">
-      <div>
-        <h2>Nome Prodotto</h2>
-        <p>Descrizione del prodotto</p>
-        <p>N° Ticket disponibili: <span id="remainingCount">140</span></p>
-      </div>      
-    </div>
+    <!-- ... codice HTML ... -->
 
     <div class="raffle">
-      <h3>Raffle</h3>
-      <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
+      <!-- ... codice HTML ... -->
+
       <input type="number" id="ticketInput" placeholder="Numero di biglietti">
-      <button onclick="participateRaffle()">Partecipa</button>
+      <button id="partecipaButton" onclick="participateRaffle()">Partecipa</button>
 
-      <!-- Visualizzazione dei biglietti -->
-      <div class="ticket-info">
-        <p>Totale biglietti: <span id="totalTickets"></span></p>
-        <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
-      </div>
-
-      <div class="ticket-bar">
-        <div class="ticket-progress"></div>
-      </div>
+      <!-- ... codice HTML ... -->
 
       <div id="alert" style="display: none;"></div>
     </div>
@@ -106,6 +45,18 @@
       totalTicketsElement.textContent = totalTickets;
       remainingTicketsElement.textContent = remainingTickets;
       progressBarElement.style.width = progressPercentage + '%';
+
+      if (ticketCount === totalTickets) {
+        disableTicketPurchase();
+      }
+    }
+
+    function disableTicketPurchase() {
+      var ticketInput = document.querySelector('#ticketInput');
+      var participateButton = document.querySelector('#partecipaButton');
+
+      ticketInput.disabled = true;
+      participateButton.disabled = true;
     }
 
     function participateRaffle() {
@@ -113,6 +64,12 @@
       var tickets = parseInt(ticketInput.value);
 
       if (tickets > 0 && tickets <= maxTickets) {
+        if (ticketCount + tickets > totalTickets) {
+          var insufficientTicketsMessage = 'Non ci sono abbastanza biglietti disponibili.';
+          showAlert(insufficientTicketsMessage);
+          return;
+        }
+
         for (var i = 0; i < tickets; i++) {
           ticketCount++; // Incrementa il contatore dei biglietti
           // Codice per assegnare e numerare il biglietto (ad esempio, salvare in un database o creare un elemento HTML)
@@ -146,6 +103,10 @@
       });
 
       updateTicketCount(); // Inizializza il numero dei biglietti rimanenti
+
+      if (ticketCount === totalTickets) {
+        disableTicketPurchase();
+      }
     }
   </script>
 </body>
