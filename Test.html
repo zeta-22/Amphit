@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <link rel="stylesheet" type="text/css" href="Test.css">
-
   <title>Test Amphit</title>
   <style>
     body {
@@ -35,7 +33,7 @@
     }
     
     .raffle {
-      text-align: center;
+      text-align: left;
       margin-top: 20px;
     }
     
@@ -43,40 +41,46 @@
     .raffle button {
       margin-top: 10px;
     }
+
+    .ticket-bar {
+      margin-top: 20px;
+    }
+
+    .ticket-bar .ticket-progress {
+      height: 10px;
+      background-color: #4CAF50; /* Colore verde per la barra di avanzamento */
+      width: 0;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Test Amphit</h1>
     
+    <div class="raffle">
+      <h3>Raffle</h3>
+      <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
+      <input type="number" id="ticketInput" placeholder="Numero di biglietti">
+      <button onclick="participateRaffle()">Partecipa</button>
+    </div>
+
     <div class="product">
       <img src="prodotto.jpg" alt="Prodotto">
       <div>
         <h2>Nome Prodotto</h2>
         <p>Descrizione del prodotto</p>
         <p>N° Ticket disponibili: <span id="remainingCount">140</span></p>
-      </div>
-      <div class="ticket-bar">
-        <div class="ticket-progress"></div>
       </div>      
     </div>
-    
-    <div class="raffle">
-      <h3>Raffle</h3>
-      <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
-      <input type="email" placeholder="Inserisci la tua email">
-      <input type="number" id="ticketInput" placeholder="Numero di biglietti">
-      <button onclick="participateRaffle()">Partecipa</button>
+
+    <!-- Visualizzazione dei biglietti -->
+    <div class="ticket-info">
+      <p>Totale biglietti: <span id="totalTickets"></span></p>
+      <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
+      <div class="ticket-bar">
+        <div class="ticket-progress"></div>
+      </div>
     </div>
-    
-   <!-- Visualizzazione dei biglietti -->
-<div class="ticket-info">
-  <p>Totale biglietti: <span id="totalTickets"></span></p>
-  <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
-  <div class="ticket-bar">
-    <div class="ticket-progress"></div>
-  </div>
-</div>
 
     <div id="alert" style="display: none;"></div>
 
@@ -92,77 +96,57 @@
     }
 
     function updateTicketCount() {
-  var totalTicketsElement = document.querySelector('#totalTickets');
-  var remainingTicketsElement = document.querySelector('#remainingTickets');
-  var progressBarElement = document.querySelector('.ticket-progress');
+      var totalTicketsElement = document.querySelector('#totalTickets');
+      var remainingTicketsElement = document.querySelector('#remainingTickets');
+      var progressBarElement = document.querySelector('.ticket-progress');
 
-  var remainingTickets = totalTickets - ticketCount;
-  var progressPercentage = (remainingTickets / totalTickets) * 100;
+      var remainingTickets = totalTickets - ticketCount;
+      var progressPercentage = (remainingTickets / totalTickets) * 100;
 
-  totalTicketsElement.textContent = totalTickets;
-  remainingTicketsElement.textContent = remainingTickets;
-  progressBarElement.style.width = progressPercentage + '%';
-}
-
+      totalTicketsElement.textContent = totalTickets;
+      remainingTicketsElement.textContent = remainingTickets;
+      progressBarElement.style.width = progressPercentage + '%';
+    }
 
     function participateRaffle() {
-      var emailInput = document.querySelector('input[type="email"]');
       var ticketInput = document.querySelector('#ticketInput');
-      var email = emailInput.value;
       var tickets = parseInt(ticketInput.value);
 
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (tickets > 0 && tickets <= maxTickets) {
+        for (var i = 0; i < tickets; i++) {
+          ticketCount++; // Incrementa il contatore dei biglietti
+          // Codice per assegnare e numerare il biglietto (ad esempio, salvare in un database o creare un elemento HTML)
+        }
 
-      if (email !== '') {
-        if (emailRegex.test(email) && tickets > 0 && tickets <= maxTickets) {
-          // Effettua qui le operazioni per partecipare alla raffle con il numero specificato di biglietti
-      for (var i = 0; i < tickets; i++) {
-        ticketCount++; // Incrementa il contatore dei biglietti
-        // Codice per assegnare e numerare il biglietto (ad esempio, salvare in un database o creare un elemento HTML)
-      }
-      var successMessage = 'Grazie per aver partecipato alla raffle con l\'indirizzo email ' + email + '! Hai acquistato ' + tickets + ' biglietti.';
-      showAlert(successMessage);
-      emailInput.value = '';
-      ticketInput.value = '';
+        var successMessage = 'Grazie per aver partecipato alla raffle! Hai acquistato ' + tickets + ' biglietti.';
+        showAlert(successMessage);
+        ticketInput.value = '';
 
-      updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti e la barra di avanzamento
-    } else {
-      if (!emailRegex.test(email)) {
-        var invalidEmailMessage = 'Inserisci un indirizzo email valido.';
-        showAlert(invalidEmailMessage);
-      } else if (tickets <= 0) {
-        var invalidTicketsMessage = 'Inserisci un numero di biglietti valido (superiore a 0).';
-        showAlert(invalidTicketsMessage);
+        updateTicketCount(); // Aggiorna il numero dei biglietti rimanenti e la barra di avanzamento
       } else {
-        var maxTicketsMessage = 'Puoi acquistare al massimo ' + maxTickets + ' biglietti.';
-        showAlert(maxTicketsMessage);
+        var invalidTicketsMessage = 'Inserisci un numero di biglietti valido (superiore a 0 e massimo ' + maxTickets + ').';
+        showAlert(invalidTicketsMessage);
       }
     }
-  } else {
-    var missingInfoMessage = 'Inserisci il tuo indirizzo email e il numero di biglietti per partecipare alla raffle.';
-    showAlert(missingInfoMessage);
-  }
-}
 
-window.onload = function() {
-  var ticketInput = document.querySelector('#ticketInput');
-  var alertElement = document.querySelector('#alert');
-  
-  ticketInput.addEventListener('input', function() {
-    var tickets = parseInt(ticketInput.value);
+    window.onload = function() {
+      var ticketInput = document.querySelector('#ticketInput');
+      var alertElement = document.querySelector('#alert');
+      
+      ticketInput.addEventListener('input', function() {
+        var tickets = parseInt(ticketInput.value);
 
-    if (tickets <= 0 || tickets > maxTickets) {
-      ticketInput.value = ''; // Resetta il valore se non è valido
+        if (tickets <= 0 || tickets > maxTickets) {
+          ticketInput.value = ''; // Resetta il valore se non è valido
+        }
+      });
+
+      alertElement.addEventListener('click', function() {
+        alertElement.style.display = 'none';
+      });
+
+      updateTicketCount(); // Inizializza il numero dei biglietti rimanenti
     }
-  });
-
-  alertElement.addEventListener('click', function() {
-    alertElement.style.display = 'none';
-  });
-
-  updateTicketCount(); // Inizializza il numero dei biglietti rimanenti
-}
-
   </script>
 </body>
 </html>
