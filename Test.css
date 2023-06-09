@@ -7,10 +7,9 @@ body {
 }
 
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #FFFFFF; /* Colore bianco per il contenitore */
+  overflow: hidden; /* Nasconde il contenuto che esce dal riquadro */
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Effetto ombra */
 }
 
 h1 {
@@ -37,19 +36,20 @@ h1 {
 }
 
 /* Stili CSS per i pulsanti */
-.button {
+.button-partecipa {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #333333;
-  color: #FFFFFF;
+  background-color: #E0CDAE; /* Colore sabbia */
+  color: #333333; /* Colore testo */
   text-decoration: none;
   font-size: 16px;
+  border: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #555555;
+.button-partecipa:hover {
+  background-color: #D1BE9B; /* Tonalità più scura del colore sabbia */
 }
 
 /* Stili CSS per gli input */
