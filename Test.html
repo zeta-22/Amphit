@@ -15,6 +15,7 @@
       margin: 20px auto;
       padding: 20px;
       background-color: #FFFFFF; /* Colore bianco per il contenitore */
+      display: flex;
     }
     
     h1 {
@@ -24,7 +25,7 @@
     .product {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-right: 20px;
     }
     
     .product img {
@@ -34,10 +35,9 @@
     
     .raffle {
       text-align: left;
-      margin-top: 20px;
     }
     
-    .raffle input[type="text"],
+    .raffle input[type="number"],
     .raffle button {
       margin-top: 10px;
     }
@@ -55,15 +55,6 @@
 </head>
 <body>
   <div class="container">
-    <h1>Test Amphit</h1>
-    
-    <div class="raffle">
-      <h3>Raffle</h3>
-      <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
-      <input type="number" id="ticketInput" placeholder="Numero di biglietti">
-      <button onclick="participateRaffle()">Partecipa</button>
-    </div>
-
     <div class="product">
       <img src="prodotto.jpg" alt="Prodotto">
       <div>
@@ -73,16 +64,25 @@
       </div>      
     </div>
 
-    <!-- Visualizzazione dei biglietti -->
-    <div class="ticket-info">
-      <p>Totale biglietti: <span id="totalTickets"></span></p>
-      <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
+    <div class="raffle">
+      <h3>Raffle</h3>
+      <p>Partecipa alla raffle per avere la possibilità di vincere il prodotto!</p>
+      <input type="number" id="ticketInput" placeholder="Numero di biglietti">
+      <button onclick="participateRaffle()">Partecipa</button>
+
+      <!-- Visualizzazione dei biglietti -->
+      <div class="ticket-info">
+        <p>Totale biglietti: <span id="totalTickets"></span></p>
+        <p>Biglietti rimanenti: <span id="remainingTickets"></span></p>
+      </div>
+
       <div class="ticket-bar">
         <div class="ticket-progress"></div>
       </div>
-    </div>
 
-    <div id="alert" style="display: none;"></div>
+      <div id="alert" style="display: none;"></div>
+    </div>
+  </div>
 
   <script>
     var totalTickets = 140; // Numero totale di biglietti disponibili
